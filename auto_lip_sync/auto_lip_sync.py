@@ -75,7 +75,7 @@ class PoseConnectWidget(QtWidgets.QWidget):
 
 class LipSyncDialog(QtWidgets.QDialog):
 
-    WINDOW_TITLE = "Auto lip sync"
+    WINDOW_TITLE = "Auto Lip Sync - Maya 2019"
     PYTHON_VERSION = float(re.search(r'\d+\.\d+', sys.version).group())
 
     USER_SCRIPT_DIR = cmds.internalVar(userScriptDir=True)
