@@ -1,9 +1,13 @@
+#! /usr/bin/python2.7
 '''
 Name: auto_lip_sync
 
 Description: A tool used for generating automated lip sync animation on a facial rig in Autodesk: Maya.
  
 Author: Joar Engberg 2021
+Fork: Daniel Z. Dias de Moraes - 2023
+
+This is a fork made for Maya 2019 (Python 2.7)
 
 Installation:
 1. Add the auto_lip_sync folder or auto_lip_sync.py to your Maya scripts folder (Username\Documents\maya*version*\scripts).
@@ -249,13 +253,13 @@ class LipSyncDialog(QtWidgets.QDialog):
         file_path = QtWidgets.QFileDialog.getSaveFileName(self, "Save pose file", self.pose_folder_path, "Pose file (*.json);;All files (*.*)")
         if file_path[0]:
             self.save_pose(file_path[0])
-            print("Saved pose: "+file_path[0])
+            print "Saved pose: " + file_path[0]
 
     def load_pose_dialog(self):
         file_path = QtWidgets.QFileDialog.getOpenFileName(self, "Save pose file", self.pose_folder_path, "Pose file (*.json);;All files (*.*)")
         if file_path[0]:
             self.load_pose(file_path[0])
-            print("Loaded pose: "+file_path[0])
+            print "Loaded pose: " + file_path[0]
 
     def input_text_dialog(self):
         file_path = QtWidgets.QFileDialog.getOpenFileName(self, "Select dialog transcript", "", "Text (*.txt);;All files (*.*)")
@@ -308,19 +312,19 @@ class LipSyncDialog(QtWidgets.QDialog):
             if line.strip():
                 current_operation += 1
                 p_dialog.setValue(current_operation)
-                print(line, end="")
-                print("")
+                print line, end=""
+                print ""
 
         for line in process.stderr:
             if line.strip():
-                print(line, end="")
-                print("")
+                print line, end=""
+                print ""
     
         process.wait()
 
         try:
             self.create_keyframes()
-            print("Successfully generated keyframes.")
+            print "Successfully generated keyframes."
             p_dialog.setValue(number_of_operations)
             p_dialog.close()
         except:
