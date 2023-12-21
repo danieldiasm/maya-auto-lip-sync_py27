@@ -1,7 +1,10 @@
 # Automated lip sync tool for Maya <= 2020
 ## FOR PYTHON 2.7
 
- A tool used for generating automated lip sync animation on a facial rig in Autodesk Maya.
+### A tool used for generating automated lip sync animation on a facial rig in Autodesk Maya.
+
+Original Author: Joar Engberg 2021
+Fork by: Daniel Z. Dias de Moraes (L3_Chevalier) - 2023
 
  ![](https://joaen.github.io/images/auto-lip-sync.gif)
 

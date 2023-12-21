@@ -4,8 +4,8 @@ Name: auto_lip_sync
 
 Description: A tool used for generating automated lip sync animation on a facial rig in Autodesk: Maya.
  
-Author: Joar Engberg 2021
-Fork: Daniel Z. Dias de Moraes - 2023
+Original Author: Joar Engberg 2021
+Fork by: Daniel Z. Dias de Moraes - 2023
 
 This is a fork made for Maya 2019 (Python 2.7)
 
