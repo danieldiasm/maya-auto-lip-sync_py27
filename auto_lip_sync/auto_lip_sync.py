@@ -79,18 +79,18 @@ class LipSyncDialog(QtWidgets.QDialog):
     PYTHON_VERSION = float(re.search(r'\d+\.\d+', sys.version).group())
 
     USER_SCRIPT_DIR = cmds.internalVar(userScriptDir=True)
-    OUTPUT_FOLDER_PATH = USER_SCRIPT_DIR+"output"
-    INPUT_FOLDER_PATH = USER_SCRIPT_DIR+"input"
+    OUTPUT_FOLDER_PATH = os.path.join(USER_SCRIPT_DIR, "output")
+    INPUT_FOLDER_PATH = os.path.join(USER_SCRIPT_DIR, "input")
     
-    MFA_PATH = USER_SCRIPT_DIR+"montreal-forced-aligner/bin"
+    MFA_PATH = os.path.join(USER_SCRIPT_DIR, "montreal-forced-aligner\\bin")
     if os.path.exists(MFA_PATH) == False:
         cmds.confirmDialog(title="Path doesn't exsist!", message="This path doesn't exsist: "+MFA_PATH)
     
-    LANGUAGE_PATH = USER_SCRIPT_DIR+"montreal-forced-aligner/pretrained_models/english.zip"
+    LANGUAGE_PATH = os.path.join(USER_SCRIPT_DIR, "montreal-forced-aligner\\pretrained_models\\english.zip")
     if os.path.exists(LANGUAGE_PATH) == False:
         cmds.confirmDialog(title="Path doesn't exsist!", message="This path doesn't exsist: "+LANGUAGE_PATH)
     
-    LEXICON_PATH = USER_SCRIPT_DIR+"librispeech-lexicon.txt"
+    LEXICON_PATH = os.path.join(USER_SCRIPT_DIR,"librispeech-lexicon.txt")
     if os.path.exists(LEXICON_PATH) == False:
         cmds.confirmDialog(title="Path doesn't exsist!", message="This path doesn't exsist: "+LEXICON_PATH)
 
@@ -368,9 +368,8 @@ class LipSyncDialog(QtWidgets.QDialog):
                 
         for file in os.listdir(destination):
             if file.endswith(".txt"):
-                old_name = self.INPUT_FOLDER_PATH+"/"+file
-                new_name = self.INPUT_FOLDER_PATH+"/"+sound_name+".txt"
-                os.rename(old_name, new_name)
+                os.rename(os.path.join(self.INPUT_FOLDER_PATH, file), 
+                          os.path.join(self.INPUT_FOLDER_PATH, str(sound_name+".txt") ))
 
     def create_keyframes(self):
             textgrid_path = self.find_textgrid_file()
@@ -427,11 +426,10 @@ class LipSyncDialog(QtWidgets.QDialog):
 
     def get_pose_paths(self):
         pose_list = []
-        folder_path = self.pose_folder_path
         try:
-            for file in os.listdir(folder_path):
+            for file in os.listdir(self.pose_folder_path):
                 if file.endswith(".json"):
-                    pose_list.append(folder_path+"/"+file)
+                    pose_list.append(os.path.join(self.pose_folder_path, file))
             return pose_list
         except:
             return pose_list
